@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
-import CommentsDisplay from './components/CommentsList/CommentsDisplay'
+import QuestionDisplay from './components/QuestionDisplay/QuestionDisplay';
+import AnswersDisplay from './components/AnswersDisplay/AnswersDisplay'
 
 function App() {
+
   return (
     <div className="App">
-      <CommentsDisplay />
+      <QuestionDisplay />
+      <AnswersDisplay />
     </div>
   );
 }
