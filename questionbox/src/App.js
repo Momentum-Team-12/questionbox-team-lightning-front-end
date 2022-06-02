@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import CommentsList from './components/CommentsList/CommentsList'
+import CommentsDisplay from './components/CommentsList/CommentsDisplay'
 
 function App() {
   return (
     <div className="App">
-      <CommentsList />
+      <CommentsDisplay />
     </div>
   );
 }
