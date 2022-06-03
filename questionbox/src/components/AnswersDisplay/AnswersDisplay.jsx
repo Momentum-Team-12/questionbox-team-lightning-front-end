@@ -13,7 +13,7 @@ function AnswersDisplay() {
                 console.log(res.data)
                 setAllAnswers(res.data)
             })
-    })
+    }, [])
 
     // const timeToConvert = DateTime.fromISO(allAnswers.created_at)
     // this library returns an object with a set of keys

@@ -12,7 +12,7 @@ function QuestionDisplay() {
 				console.log(res.data);
 				setQuestion(res.data);
 			});
-	});
+	}, []);
 	return (
 		<h1> {question.description} </h1>
 	)
