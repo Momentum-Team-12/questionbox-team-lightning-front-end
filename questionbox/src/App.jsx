@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 import QuestionDisplay from './components/QuestionDisplay/QuestionDisplay';
-import AnswersDisplay from './components/AnswersDisplay/AnswersDisplay'
+import AnswersList from './components/AnswersDisplay/AnswersList'
 
 function App() {
 
   return (
     <div className="App">
       <QuestionDisplay />
-      <AnswersDisplay />
+      <AnswersList />
     </div>
   );
 }
