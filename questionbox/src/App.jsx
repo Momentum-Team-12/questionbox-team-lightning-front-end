@@ -2,7 +2,7 @@ import React from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import './App.css';
 import ExistingUserSignIn from './components/login/ExistingUserSignIn/ExistingUserSignIn'
-import QuestionDisplay from './components/QuestionDisplay/QuestionDisplay';
+import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay';
 import AnswersList from './components/AnswersList/AnswersList'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt';
 
@@ -30,7 +30,7 @@ const App = () => {
     <>
       <QuestionPrompt />
       <QuestionDisplay />
-      <AnswersDisplay />
+      <AnswersList />
     </>
   );
 }
