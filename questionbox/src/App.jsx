@@ -23,6 +23,7 @@ const App = () => {
       <ExistingUserSignIn setAuth={setAuth} />
       <QuestionDisplay />
       <AnswersList />
+      <QuestionPrompt />
     </>
   }
 
