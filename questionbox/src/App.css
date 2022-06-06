@@ -1,7 +1,16 @@
 div {
-	border: 1px solid black;
+	border: 3px solid rgb(143, 169, 113);
+	background-color: white;
+	margin: 5px;
+	border-radius: 5px;
 }
 
 .authNeeded {
 	border: 2px dashed gold;
+}
+
+body {
+	display: flex;
+	justify-content: space-around;
+	background-color: rgb(210, 211, 213);
 }
