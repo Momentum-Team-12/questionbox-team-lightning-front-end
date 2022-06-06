@@ -26,22 +26,8 @@ export const QuestionPrompt = () => {
     )
 }
 
-// uncontrolled forms
-// export const RefInput = () => {
-//     const inputText = useRef('')
-
-//     const handleClick = () => {
-//     console.log(inputText)
-//     console.log(inputText.current)
-//     console.log(inputText.current.value)
-//     }
-
-//     return (
-//     <>
-//         <input type="text" className="ref-input-field" ref={inputText} />
-//         <button className="btn-input" onClick={handleClick}>
-//         Check that Ref!
-//         </button>
-//     </>
-//     )
-// }
+//add post request for question storage
+//example in amy's code - login component
+//modify form to show question title and body
+//put input field inside form 
+//onSubmit handler
