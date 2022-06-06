@@ -1,3 +1,7 @@
+div {
+	border: 5px solid black;
+}
+
 .authNeeded {
-    border: 3px dashed gold;
+	border: 3px dashed gold;
 }
