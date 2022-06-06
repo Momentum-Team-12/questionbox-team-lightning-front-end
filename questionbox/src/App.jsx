@@ -4,6 +4,7 @@ import './App.css';
 import ExistingUserSignIn from './components/login/ExistingUserSignIn/ExistingUserSignIn'
 import QuestionDisplay from './components/QuestionDisplay/QuestionDisplay';
 import AnswersList from './components/AnswersList/AnswersList'
+import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt';
 
 const App = () => {
   //using local storage to hold onto token issued by API upon successful login
@@ -27,8 +28,9 @@ const App = () => {
 
   return (
     <>
+      <QuestionPrompt />
       <QuestionDisplay />
-      <AnswersList />
+      <AnswersDisplay />
     </>
   );
 }
