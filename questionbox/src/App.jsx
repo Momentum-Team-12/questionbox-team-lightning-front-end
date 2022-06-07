@@ -50,7 +50,7 @@ const App = () => {
         <Route path="/questions/add" element={<QuestionPrompt />}></Route>
       </Routes>
       <QuestionDisplay />
-      <AnswersList />
+      <AnswersList isLoggedIn={isLoggedIn} />
       <QuestionPrompt />
     </BrowserRouter>
   </>

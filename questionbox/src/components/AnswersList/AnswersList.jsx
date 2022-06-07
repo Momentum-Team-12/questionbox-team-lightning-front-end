@@ -2,12 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react'
-import { Typography, Card, CardActions, CardContent, IconButton } from '@mui/material'
+import { Typography, Card, CardActions, CardContent, IconButton, Divider } from '@mui/material'
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import axios from 'axios';
 
 
-function AnswersList() {
+function AnswersList({ isLoggedIn }) {
     const [allAnswers, setAllAnswers] = useState([])
 
     useEffect(() => {
@@ -31,7 +31,10 @@ function AnswersList() {
                     <Card key={index}>
                         <CardContent>
                             <Typography gutterBottom>
-                                @{AnswererUsername} <br></br> Asked {AnswerCreatedAt}
+                                @{AnswererUsername}
+                            </Typography>
+                            <Typography>
+                                Asked {AnswerCreatedAt}
                             </Typography>
                             <Typography variant="h5">
                                 {AnswerTitle}
@@ -40,12 +43,23 @@ function AnswersList() {
                                 {AnswerBody}
                             </Typography>
                         </CardContent>
-                        <CardActions>
-                            <IconButton aria-label="favorite this question">
-                                <StarBorderOutlinedIcon color="primary" />
-                            </IconButton>
-                            <Typography>{TotalAnswers} favorites</Typography>
-                        </CardActions>
+                        {!isLoggedIn ? (
+                            <CardActions>
+                                {/* <IconButton aria-label="favorite this question">
+                                    <StarBorderOutlinedIcon color="primary" />
+                                </IconButton> */}
+                                <Typography>{TotalAnswers} favorites</Typography>
+                                <Divider variant="middle" />
+                                <Typography variant="p">Log in to favorite</Typography>
+                            </CardActions>
+                        ) : (
+                            <CardActions>
+                                <IconButton aria-label="favorite this question">
+                                    <StarBorderOutlinedIcon color="primary" />
+                                </IconButton>
+                                <Typography>{TotalAnswers} favorites</Typography>
+                            </CardActions>
+                        )}
                     </Card>
                 )
             })}
