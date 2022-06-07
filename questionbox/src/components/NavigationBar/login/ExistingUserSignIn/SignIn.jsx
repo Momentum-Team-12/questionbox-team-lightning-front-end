@@ -1,11 +1,27 @@
+import * as React from 'react';
+import { Snackbar } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 import { useState } from 'react'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function SignIn({ setAuth, isLoggedIn }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
 
     const handleLogin = (event) => {
         // prevent the default action of the form, which is to make a request
@@ -24,17 +40,23 @@ export default function SignIn({ setAuth, isLoggedIn }) {
                 console.log(res.data)
                 setAuth(username, res.data.auth_token)
             })
-            .catch((e) => setError(e.message))
+            .catch((e) => {
+                e.message === 'Request failed with status code 400' ? setError('Your username or password is incorrect. Please try again.') : setError('An error occurred. Please check your username and password and try again.')
+            })
     }
 
     if (isLoggedIn) {
-        return <Navigate to="/" replace={true} />
+        return (<Navigate to="/" replace={true} />)
     }
 
     return (
         <div className="Login">
             <h2>Log In</h2>
-            {error && <div className="error">{error}</div>}
+            {error && <Snackbar open={error} onClose={handleClose} autoHideDuration={6000} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+                <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+                    {error}
+                </Alert>
+            </Snackbar>}
             <form onSubmit={handleLogin}>
                 <div className="field-controls">
                     <label className="input-label" htmlFor="username">
