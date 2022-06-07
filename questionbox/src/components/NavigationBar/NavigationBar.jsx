@@ -1,8 +1,6 @@
 import * as React from 'react';
 import ReactDOM from "react-dom/client";
-import {
-    Link,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
