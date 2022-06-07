@@ -57,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function NavigationBar() {
+export default function NavigationBar({ handleLogout, isLoggedIn }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -98,10 +98,16 @@ export default function NavigationBar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <Typography variant="h5">Sign in to continue.</Typography>
-            <Typography variant="subtitle2">An account lets you ask your own questions, give answers, and more.</Typography>
-            <Button component={Link} to="/signup" variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
-            <Button component={Link} to="/login" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
+            {!isLoggedIn ? (
+                <div>
+                    <Typography variant="h5">Sign in to continue.</Typography>
+                    <Typography variant="subtitle2">An account lets you ask your own questions, give answers, and more.</Typography>
+                    <Button component={Link} to="/signup" variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
+                    <Button component={Link} to="/login" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
+                </div>
+            ) : (
+                <Button component={Link} onClick={handleLogout} to="/" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
+            )}
         </Menu>
     );
 

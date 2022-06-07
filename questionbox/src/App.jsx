@@ -7,6 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
+import axios from "axios"
 import Error404 from './components/Error404/Error404'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn'
@@ -27,12 +28,22 @@ const App = () => {
   const isLoggedIn = username && token
 
   const handleLogout = () => {
-    setAuth('', '')
+    axios
+      .post(
+        'https://questionbox-team-lightning.herokuapp.com/auth/token/logout',
+        {},
+        {
+          headers: { Authorization: `token ${token}` },
+        }
+      )
+      .then((res) => {
+        setAuth('', '')
+      })
   }
 
   return <>
     <BrowserRouter>
-      <NavigationBar />
+      <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Routes>
         <Route path="/login" element={<ExistingUserSignIn isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}></Route>
         <Route path="/questions/add" element={<QuestionPrompt />}></Route>
