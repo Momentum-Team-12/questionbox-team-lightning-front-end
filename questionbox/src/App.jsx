@@ -1,7 +1,7 @@
 import React from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import './App.css';
-import err404 from './components/err404/err404'
+import Error404 from './components/Error404/Error404'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn'
 import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay';
