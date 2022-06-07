@@ -7,6 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
+import Error404 from './components/Error404/Error404'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn'
 import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay';
