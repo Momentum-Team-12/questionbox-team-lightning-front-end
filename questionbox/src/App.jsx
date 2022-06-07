@@ -10,7 +10,8 @@ import './App.css';
 import axios from "axios"
 import Error404 from './components/Error404/Error404'
 import NavigationBar from './components/NavigationBar/NavigationBar'
-import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn'
+// import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn';
+import SignIn from './components/NavigationBar/login/ExistingUserSignIn/SignIn'
 import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay';
 import AnswersList from './components/AnswersList/AnswersList'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt';
@@ -45,7 +46,7 @@ const App = () => {
     <BrowserRouter>
       <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/login" element={<ExistingUserSignIn isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}></Route>
+        <Route path="/login" element={<SignIn setAuth={setAuth} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}></Route>
         <Route path="/questions/add" element={<QuestionPrompt />}></Route>
       </Routes>
       <QuestionDisplay />
