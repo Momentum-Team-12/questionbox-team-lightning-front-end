@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -99,17 +102,17 @@ export default function NavigationBar({ handleLogout, isLoggedIn }) {
             onClose={handleMenuClose}
         >
             {!isLoggedIn ? (
-                <div>
+                <Card>
                     <Typography variant="h5">Sign in to continue.</Typography>
                     <Typography variant="subtitle2">An account lets you ask your own questions, give answers, and more.</Typography>
                     <Button component={Link} to="/signup" variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
                     <Button component={Link} to="/login" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
-                </div>
+                </Card>
             ) : (
-                <div>
+                <Card>
                     <Typography variant="p">Signed in as @username.</Typography>
                     <Button component={Link} onClick={handleLogout} to="/" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
-                </div>
+                </Card>
             )}
         </Menu>
     );

@@ -45,6 +45,8 @@ export default function SignIn({ setAuth, isLoggedIn }) {
             })
     }
 
+    // yesterday I was trying to use a Snackbar to show an alert when the server needed to warm up. When i had it all wired up my login component refused to render. why was it stuck?
+
     if (isLoggedIn) {
         return (<Navigate to="/" replace={true} />)
     }
