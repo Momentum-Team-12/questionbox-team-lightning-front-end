@@ -1,7 +1,13 @@
 import React from 'react';
 import useLocalStorageState from 'use-local-storage-state';
+import ReactDOM from "react-dom/client";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import './App.css';
-import err404 from './components/err404/err404'
+import Error404 from './components/Error404/Error404'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn'
 import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay';
@@ -25,11 +31,15 @@ const App = () => {
   }
 
   return <>
-    <NavigationBar />
-    <ExistingUserSignIn isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
-    <QuestionDisplay />
-    <AnswersList />
-    <QuestionPrompt />
+    <BrowserRouter>
+      <NavigationBar />
+      <Routes>
+        <Route path="/login" element={<ExistingUserSignIn isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}></Route>
+        <Route path="/questions/add" element={<QuestionPrompt />}></Route>
+      </Routes>
+      <QuestionDisplay />
+      <AnswersList />
+    </BrowserRouter>
   </>
 }
 

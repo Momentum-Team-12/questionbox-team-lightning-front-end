@@ -1,4 +1,6 @@
 import * as React from 'react';
+import ReactDOM from "react-dom/client";
+import { Link } from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,13 +11,11 @@ import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -98,9 +98,10 @@ export default function NavigationBar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <Typography>Sign in to continue</Typography>
-            <Button onClick={handleMenuClose} variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
-            <Button onClick={handleMenuClose} variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
+            <Typography variant="h5">Sign in to continue.</Typography>
+            <Typography variant="subtitle2">An account lets you ask your own questions, give answers, and more.</Typography>
+            <Button component={Link} to="/signup" variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
+            <Button component={Link} to="/login" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
         </Menu>
     );
 
@@ -141,19 +142,9 @@ export default function NavigationBar() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Typography
-                        variant="h6"
+                        component={Link} style={{ textDecoration: 'none' }} to="/" variant="h6"
                         noWrap
-                        component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
                         QuestionBox
