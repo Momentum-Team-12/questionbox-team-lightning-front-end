@@ -34,6 +34,7 @@ const App = () => {
     <BrowserRouter>
       <NavigationBar />
       <Routes>
+        <Route path="*" element={<Error404 />}></Route>
         <Route path="/login" element={<ExistingUserSignIn isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}></Route>
         <Route path="/questions/add" element={<QuestionPrompt />}></Route>
       </Routes>
