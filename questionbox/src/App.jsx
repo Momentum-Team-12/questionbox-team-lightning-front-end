@@ -39,6 +39,7 @@ const App = () => {
       </Routes>
       <QuestionDisplay />
       <AnswersList />
+      <QuestionPrompt />
     </BrowserRouter>
   </>
 }
