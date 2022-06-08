@@ -6,7 +6,7 @@ import CreateIcon from '@mui/icons-material/Create';
 
 export default function AddQuestionButton(props) {
 
-const buttonStyle = {
+  const buttonStyle = {
     margin: 0,
     top: 'auto',
     right: 20,
@@ -19,7 +19,7 @@ const buttonStyle = {
     return (
       <Box>
         <Fab variant="extended"
-          style={style}
+          style={buttonStyle}
           component={Link}
           to="/login"
           color="secondary"
@@ -33,7 +33,7 @@ const buttonStyle = {
   return (
     <Box>
       <Fab variant="extended"
-        style={style}
+        style={buttonStyle}
         component={Link}
         to="/questions/add"
         color="secondary"
