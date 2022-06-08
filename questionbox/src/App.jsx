@@ -42,6 +42,19 @@ const App = () => {
       })
   }
 
+  if (!isLoggedIn) {
+    return (
+      <BrowserRouter>
+        <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+        <Routes>
+          <Route path="/login" element={<SignIn setAuth={setAuth} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}></Route>
+          <Route path="/questions/add" element={<QuestionPrompt />}></Route>
+        </Routes>
+        <AnswersList />
+      </BrowserRouter>
+    )
+  }
+
   return <>
     <BrowserRouter>
       <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
@@ -49,9 +62,7 @@ const App = () => {
         <Route path="/login" element={<SignIn setAuth={setAuth} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}></Route>
         <Route path="/questions/add" element={<QuestionPrompt />}></Route>
       </Routes>
-      <QuestionDisplay />
       <AnswersList />
-      <QuestionPrompt />
     </BrowserRouter>
   </>
 }
