@@ -38,6 +38,7 @@ export default function SignIn({ setAuth, isLoggedIn }) {
             })
             .then((res) => {
                 console.log(res.data)
+                localStorage.setItem('auth_token', res.data.auth_token)
                 setAuth(username, res.data.auth_token)
             })
             .catch((e) => {

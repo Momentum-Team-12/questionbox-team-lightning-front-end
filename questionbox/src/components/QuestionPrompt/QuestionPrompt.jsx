@@ -17,6 +17,8 @@ export const QuestionPrompt = () => {
 	setValues({...values, body: e.target.value});
 	};
 
+	const token = localStorage.getItem('auth_token')
+	console.log(token)
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		console.log(e)
@@ -24,7 +26,14 @@ export const QuestionPrompt = () => {
 			.post('https://questionbox-team-lightning.herokuapp.com/api/questions/', {
 				title: values.title,
 				body: values.body,
-	})
+	},
+	{
+		headers: { Authorization: `token ${token}`,
+		'Content-Type': 'application/json',
+		accept: 'application/json',
+	},
+	}
+)
 .then((res) => {
 	console.log(res.data)
 })
