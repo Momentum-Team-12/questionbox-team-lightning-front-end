@@ -8,6 +8,7 @@ import Error404 from './components/Error404/Error404'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 // import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn';
 import SignIn from './components/NavigationBar/SignIn/SignIn'
+import SignUp from './components/NavigationBar/SignUp/SignUp'
 import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay'
 import AnswersList from './components/AllQuestions/AllQuestions'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt'
@@ -44,7 +45,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar path="/start" isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Routes>
         <Route
           path="/"
@@ -65,6 +66,7 @@ const App = () => {
             />
           }
         ></Route>
+        <Route path="/join" element={<SignUp />}></Route>
         <Route path="/questions/add" element={<QuestionPrompt />}></Route>
       </Routes>
     </BrowserRouter>
