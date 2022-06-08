@@ -44,7 +44,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <NavigationBar path="/start" isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Routes>
         <Route
           path="/"
