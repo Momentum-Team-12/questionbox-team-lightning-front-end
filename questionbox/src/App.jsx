@@ -13,7 +13,7 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 // import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn';
 import SignIn from './components/NavigationBar/login/ExistingUserSignIn/SignIn'
 import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay';
-import AnswersList from './components/AnswersList/AnswersList'
+import AnswersList from './components/AllQuestions/AllQuestions'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt';
 
 const App = () => {
