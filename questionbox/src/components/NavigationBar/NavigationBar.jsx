@@ -77,6 +77,12 @@ export default function NavigationBar({ handleLogout, isLoggedIn }) {
         handleMobileMenuClose();
     };
 
+    const handleMenuCloseAndLogOut = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+        handleLogout();
+    }
+
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
@@ -102,13 +108,13 @@ export default function NavigationBar({ handleLogout, isLoggedIn }) {
                 <div>
                     <Typography variant="h5">Sign in to continue.</Typography>
                     <Typography variant="subtitle2">An account lets you ask your own questions, give answers, and more.</Typography>
-                    <Button component={Link} to="/join" variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
-                    <Button component={Link} to="/login" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
+                    <Button onClick={handleMenuClose} component={Link} to="/join" variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
+                    <Button onClick={handleMenuClose} component={Link} to="/login" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
                 </div>
             ) : (
                 <div>
                     <Typography variant="p">Signed in as @username.</Typography>
-                    <Button onClick={handleLogout, handleMenuClose} Navigate to="/" replace={true} variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
+                    <Button onClick={handleMenuCloseAndLogOut} Navigate to="/" replace={true} variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
                 </div>
             )}
         </Menu>

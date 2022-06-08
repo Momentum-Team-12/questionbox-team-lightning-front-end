@@ -60,11 +60,9 @@ export default function SignIn({ setAuth, isLoggedIn }) {
       })
   }
 
-
-  //this will get added back later
-  // if (isLoggedIn) {
-  //   return <Navigate to="/" replace={true} />
-  // }
+  if (isLoggedIn) {
+    return <Navigate to="/" replace={true} />
+  }
 
   return (
     <Grid

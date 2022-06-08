@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react'
 import { Typography, Card, CardActions, CardContent, IconButton } from '@mui/material'
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import axios from 'axios';
 
 
@@ -25,13 +26,18 @@ function AllQuestions() {
                 const QuestionAsker = eachQuestion.creator
                 const QuestionTitle = eachQuestion.title
                 const QuestionBody = eachQuestion.body
-                const TotalQuestions = eachQuestion.total_Questions
-                const QuestionCreatedAt = eachQuestion.created_at
+                const Favorites = eachQuestion.favorite_count
+                const Answers = eachQuestion.total_answers
+                const CreatedDate = eachQuestion.created_at
+                const ModifiedDate = eachQuestion.modified_on
                 return (
                     <Card key={index}>
                         <CardContent>
                             <Typography gutterBottom>
-                                @{QuestionAsker} <br></br> Asked {QuestionCreatedAt}
+                                @{QuestionAsker} <br></br> Asked {CreatedDate}
+                            </Typography>
+                            <Typography>
+                                Updated {ModifiedDate}
                             </Typography>
                             <Typography variant="h5">
                                 {QuestionTitle}
@@ -44,7 +50,11 @@ function AllQuestions() {
                             <IconButton aria-label="favorite this question">
                                 <StarBorderOutlinedIcon color="primary" />
                             </IconButton>
-                            <Typography>{TotalQuestions} favorites</Typography>
+                            <Typography>{Favorites}</Typography>
+                            <IconButton aria-label="answer this question">
+                                <InsertCommentIcon color="primary" />
+                            </IconButton>
+                            <Typography>{Answers}</Typography>
                         </CardActions>
                     </Card>
                 )
