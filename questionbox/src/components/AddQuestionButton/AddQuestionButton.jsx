@@ -6,7 +6,7 @@ import CreateIcon from '@mui/icons-material/Create';
 
 export default function AddQuestionButton(props) {
 
-  const style = {
+const buttonStyle = {
     margin: 0,
     top: 'auto',
     right: 20,
