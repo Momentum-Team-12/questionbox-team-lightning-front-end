@@ -15,6 +15,7 @@ import SignIn from './components/NavigationBar/login/ExistingUserSignIn/SignIn'
 import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay';
 import AnswersList from './components/AllQuestions/AllQuestions'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt';
+import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
 
 const App = () => {
   //using local storage to hold onto token issued by API upon successful login
@@ -46,6 +47,7 @@ const App = () => {
     return (
       <BrowserRouter>
         <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+        <AddQuestionButton isLoggedIn={isLoggedIn} />
         <Routes>
           <Route path="/login" element={<SignIn setAuth={setAuth} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}></Route>
           <Route path="/questions/add" element={<QuestionPrompt />}></Route>
@@ -58,6 +60,7 @@ const App = () => {
   return <>
     <BrowserRouter>
       <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <AddQuestionButton isLoggedIn={isLoggedIn} />
       <Routes>
         <Route path="/login" element={<SignIn setAuth={setAuth} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />}></Route>
         <Route path="/questions/add" element={<QuestionPrompt />}></Route>
