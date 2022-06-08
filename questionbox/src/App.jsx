@@ -7,7 +7,7 @@ import axios from 'axios'
 import Error404 from './components/Error404/Error404'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 // import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn';
-import SignIn from './components/NavigationBar/login/ExistingUserSignIn/SignIn'
+import SignIn from './components/NavigationBar/SignIn/SignIn'
 import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay'
 import AnswersList from './components/AllQuestions/AllQuestions'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt'

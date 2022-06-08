@@ -108,7 +108,7 @@ export default function NavigationBar({ handleLogout, isLoggedIn }) {
             ) : (
                 <div>
                     <Typography variant="p">Signed in as @username.</Typography>
-                    <Button component={Link} onClick={handleLogout} to="/" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
+                    <Button onClick={handleLogout, handleMenuClose} Navigate to="/" replace={true} variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
                 </div>
             )}
         </Menu>
