@@ -11,6 +11,7 @@ import SignUp from './components/NavigationBar/SignUp/SignUp'
 import AllQuestions from './components/AllQuestions/AllQuestions'
 import TestCard from './components/AllQuestions/TestCard'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt'
+import TempQuestionPrompt from './components/QuestionPrompt/TempQuestionPrompt'
 import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
 import EachQuestion from './components/AllQuestions/EachQuestion'
 
@@ -68,7 +69,7 @@ const App = () => {
           }
         ></Route>
         <Route path="/join" element={<SignUp />}></Route>
-        <Route path="/questions/add" element={<QuestionPrompt />}></Route>
+        <Route path="/questions/add" element={<TempQuestionPrompt />}></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </BrowserRouter>
