@@ -4,7 +4,7 @@ import { Paper, Box, Typography, Button, Card, CardActions, CardContent } from '
 import { Icon } from '@iconify/react';
 import IconButton from '@mui/material/IconButton';
 import PublicIcon from '@mui/icons-material/Public';
-import { Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const cardStyle = {
     display: "block",
@@ -24,13 +24,10 @@ export default function Error404() {
                 <Typography variant="h5">
                     you seem to be lost!
                 </Typography>
-                <Typography variant="p">
-                    Error404
-                </Typography>
                 <Box textAlign="center">
-                    <IconButton
+                    <IconButton component={Link} to="/"
                         size="large" color="inherit">
-                        <PublicIcon size="large" navigate to="/" />
+                        <PublicIcon size="large" />
                     </IconButton>
                 </Box>
             </CardContent>
