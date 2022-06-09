@@ -42,20 +42,6 @@ export default function AddQuestionButton(props) {
           <CreateIcon />
           Add
         </Fab>
-        {/* <Snackbar
-          open={open}
-          onClose={handleClose}
-          autoHideDuration={6000}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        >
-          <Alert
-            onClose={handleClose}
-            severity="warning"
-            sx={{ width: '100%' }}
-          >
-            you cannot do that.
-          </Alert>
-        </Snackbar> */}
       </Box>
     )
   }
