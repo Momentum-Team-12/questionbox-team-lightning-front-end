@@ -31,32 +31,34 @@ function AllQuestions() {
                 const CreatedDate = eachQuestion.created_at
                 const ModifiedDate = eachQuestion.modified_on
                 return (
-                    <Card key={index}>
-                        <CardContent>
-                            <Typography gutterBottom>
-                                @{QuestionAsker} <br></br> Asked {CreatedDate}
-                            </Typography>
-                            <Typography>
-                                Updated {ModifiedDate}
-                            </Typography>
-                            <Typography variant="h5">
-                                {QuestionTitle}
-                            </Typography>
-                            <Typography variant="p">
-                                {QuestionBody}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <IconButton aria-label="favorite this question">
-                                <StarBorderOutlinedIcon color="primary" />
-                            </IconButton>
-                            <Typography>{Favorites}</Typography>
-                            <IconButton aria-label="answer this question">
-                                <InsertCommentIcon color="primary" />
-                            </IconButton>
-                            <Typography>{Answers}</Typography>
-                        </CardActions>
-                    </Card>
+                    <Box>
+                        <Card key={index}>
+                            <CardContent>
+                                <Typography gutterBottom>
+                                    @{QuestionAsker} <br></br> Asked {CreatedDate}
+                                </Typography>
+                                <Typography>
+                                    Updated {ModifiedDate}
+                                </Typography>
+                                <Typography variant="h5">
+                                    {QuestionTitle}
+                                </Typography>
+                                <Typography variant="p">
+                                    {QuestionBody}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <IconButton aria-label="favorite this question">
+                                    <StarBorderOutlinedIcon color="primary" />
+                                </IconButton>
+                                <Typography>{Favorites}</Typography>
+                                <IconButton aria-label="answer this question">
+                                    <InsertCommentIcon color="primary" />
+                                </IconButton>
+                                <Typography>{Answers}</Typography>
+                            </CardActions>
+                        </Card>
+                    </Box>
                 )
             })}
         </>
