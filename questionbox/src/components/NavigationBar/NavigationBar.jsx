@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactDOM from "react-dom/client";
 import { Link } from "react-router-dom";
+import { Navigate } from 'react-router-dom'
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,7 +17,6 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
@@ -79,6 +79,12 @@ export default function NavigationBar({ handleLogout, isLoggedIn }) {
         setAnchorEl(null);
         handleMobileMenuClose();
     };
+
+    const handleMenuCloseAndLogOut = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+        handleLogout();
+    }
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
@@ -182,17 +188,7 @@ export default function NavigationBar({ handleLogout, isLoggedIn }) {
                     >
                         <AccountCircle />
                     </IconButton>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
+                    <Box>
                     </Box>
                 </Toolbar>
             </AppBar>
