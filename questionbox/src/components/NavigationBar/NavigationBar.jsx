@@ -60,7 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function NavigationBar({ handleLogout, isLoggedIn }) {
+export default function NavigationBar({ handleLogout, isLoggedIn, username }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -116,7 +116,7 @@ export default function NavigationBar({ handleLogout, isLoggedIn }) {
                 </Card>
             ) : (
                 <Card>
-                    <Typography variant="p">Signed in as @username.</Typography>
+                    <Typography variant="p">Signed in as ${username}</Typography>
                     <Button component={Link} onClick={handleLogout} to="/" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
                 </Card>
             )}

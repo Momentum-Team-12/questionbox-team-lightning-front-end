@@ -25,7 +25,6 @@ export default function EachAnswerForQuestion({ QuestionId }) {
         axios
             .get(`https://questionbox-team-lightning.herokuapp.com/api/questions/${QuestionId}/answers`)
             .then((res) => {
-                console.log(`The results are: ${res.data}`)
                 setAllAnswers(res.data)
             })
     }, [])

@@ -16,7 +16,7 @@ import axios from 'axios';
 import EachQuestion from './EachQuestion'
 
 
-export default function TestCard() {
+export default function QuestionsList() {
     const [allQuestions, setAllQuestions] = useState([])
 
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function TestCard() {
         <>
             {allQuestions.map((eachQuestion, index) => {
                 return (
-                    <Box sx={{ maxWidth: "97vw" }}>
+                    <Box sx={{ maxWidth: "97vw" }} key={index}>
                         <EachQuestion eachQuestion={eachQuestion} index={index} />
                     </Box>
                 )

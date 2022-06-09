@@ -8,12 +8,12 @@ import Error404 from './components/Error404/Error404'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import SignIn from './components/NavigationBar/SignIn/SignIn'
 import SignUp from './components/NavigationBar/SignUp/SignUp'
-import AllQuestions from './components/AllQuestions/AllQuestions'
-import TestCard from './components/AllQuestions/TestCard'
+import QuestionsList from './components/QuestionsList/QuestionsList'
+import TestCard from './components/QuestionsList/QuestionsList'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt'
 import TempQuestionPrompt from './components/QuestionPrompt/TempQuestionPrompt'
 import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
-import EachQuestion from './components/AllQuestions/EachQuestion'
+import EachQuestion from './components/QuestionsList/EachQuestion'
 
 const App = () => {
   //using local storage to hold onto token issued by API upon successful login
@@ -46,15 +46,14 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <NavigationBar isLoggedIn={isLoggedIn} username={username} handleLogout={handleLogout} />
       <Routes>
         <Route
           path="/"
           element={
             <>
               <AddQuestionButton isLoggedIn={isLoggedIn} />
-              <TestCard />
-              {/* <AllQuestions /> */}
+              <QuestionsList />
             </>
           }
         />
@@ -69,7 +68,7 @@ const App = () => {
           }
         ></Route>
         <Route path="/join" element={<SignUp />}></Route>
-        <Route path="/questions/add" element={<TempQuestionPrompt />}></Route>
+        <Route path="/questions/add" element={<TempQuestionPrompt token={token} />}></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </BrowserRouter>
