@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -18,6 +19,7 @@ import EachQuestion from './EachQuestion'
 
 export default function QuestionsList() {
     const [allQuestions, setAllQuestions] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         axios
@@ -25,8 +27,17 @@ export default function QuestionsList() {
             .then((res) => {
                 console.log(res.data)
                 setAllQuestions(res.data)
+                setIsLoading(false)
             })
     }, [])
+
+    if (isLoading) {
+        return (
+            <Box>
+                <CircularProgress />
+            </Box>
+        )
+    }
 
     return (
         <>
