@@ -16,7 +16,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
-export default function SignIn({ token }) {
+export default function AddQuestion({ token }) {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [error, setError] = useState('')

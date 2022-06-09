@@ -9,11 +9,10 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 import SignIn from './components/NavigationBar/SignIn/SignIn'
 import SignUp from './components/NavigationBar/SignUp/SignUp'
 import QuestionsList from './components/QuestionsList/QuestionsList'
-import TestCard from './components/QuestionsList/QuestionsList'
-import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt'
-import TempQuestionPrompt from './components/QuestionPrompt/TempQuestionPrompt'
+import TempQuestionPrompt from './components/AddQuestion/AddQuestion'
 import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
 import EachQuestion from './components/QuestionsList/EachQuestion'
+import AddAnswer from './components/AnswersList/AddAnswer'
 
 const App = () => {
   //using local storage to hold onto token issued by API upon successful login
@@ -67,6 +66,7 @@ const App = () => {
             />
           }
         ></Route>
+        <Route path="/addanswer" element={<AddAnswer />}></Route>
         <Route path="/join" element={<SignUp />}></Route>
         <Route path="/questions/add" element={<TempQuestionPrompt token={token} />}></Route>
         <Route path="*" element={<Error404 />}></Route>
