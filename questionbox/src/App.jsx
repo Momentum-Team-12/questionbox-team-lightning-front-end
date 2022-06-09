@@ -12,6 +12,7 @@ import AllQuestions from './components/AllQuestions/AllQuestions'
 import TestCard from './components/AllQuestions/TestCard'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt'
 import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
+import EachQuestion from './components/AllQuestions/EachQuestion'
 
 const App = () => {
   //using local storage to hold onto token issued by API upon successful login
@@ -52,7 +53,7 @@ const App = () => {
             <>
               <AddQuestionButton isLoggedIn={isLoggedIn} />
               <TestCard />
-              <AllQuestions />
+              {/* <AllQuestions /> */}
             </>
           }
         />
