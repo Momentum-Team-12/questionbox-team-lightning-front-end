@@ -30,13 +30,13 @@ export default function TestCard() {
 
     return (
         <>
-        {allQuestions.map((eachQuestion, index) => {
+            {allQuestions.map((eachQuestion, index) => {
                 return (
-        <Box sx={{ maxWidth: "97vw" }}>
-            <EachQuestion eachQuestion={eachQuestion} index={index}/>
-        </Box>
-            )
-        })}
+                    <Box sx={{ maxWidth: "97vw" }}>
+                        <EachQuestion eachQuestion={eachQuestion} index={index} />
+                    </Box>
+                )
+            })}
         </>
     )
 }

@@ -17,39 +17,40 @@ import EachQuestion from './EachQuestion';
 
 
 
-export default function EachAnswerForQuestion({index}) {
+export default function EachAnswerForQuestion({ QuestionId }) {
     const [allAnswers, setAllAnswers] = useState([])
 
 
     useEffect(() => {
         axios
-            .get(`https://questionbox-team-lightning.herokuapp.com/api/questions/${index}/answers`)
+            .get(`https://questionbox-team-lightning.herokuapp.com/api/questions/${QuestionId}/answers`)
             .then((res) => {
-                console.log(res.data)
+                console.log(`The results are: ${res.data}`)
                 setAllAnswers(res.data)
             })
     }, [])
 
     return (
         <>
-        {allAnswers.map((eachAnswer, index) => {
+            {allAnswers.map((eachAnswer, res) => {
                 const Answer = eachAnswer.response
+                const AnswerId = eachAnswer.id
                 const EachAnswerer = eachAnswer.responder
                 const CreatedDate = eachAnswer.created_at
                 const ModifiedDate = eachAnswer.modified_on
-        return (
-            <Card key={index}>
-            <Typography variant="p">
-                    @{EachAnswerer} . {CreatedDate} . {ModifiedDate}
-                </Typography>
-                <CardContent>
-                    <Typography variant="p">
-                        {Answer}
-                    </Typography>
-                </CardContent>
-        </Card>
-            )
-        })}
+                return (
+                    <Card key={AnswerId}>
+                        <Typography variant="p">
+                            @{EachAnswerer} . {CreatedDate} . {ModifiedDate}
+                        </Typography>
+                        <CardContent>
+                            <Typography variant="p">
+                                {Answer}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                )
+            })}
         </>
     )
 }
