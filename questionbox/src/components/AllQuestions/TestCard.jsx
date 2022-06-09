@@ -31,14 +31,6 @@ export default function TestCard() {
     return (
         <>
         {allQuestions.map((eachQuestion, index) => {
-                // const QuestionAsker = eachQuestion.creator
-                // const QuestionTitle = eachQuestion.title
-                // const QuestionBody = eachQuestion.body
-                // const Favorites = eachQuestion.favorite_count
-                // const Answers = eachQuestion.total_answers
-                // const CreatedDate = eachQuestion.created_at
-                // const ModifiedDate = eachQuestion.modified_on
-                // const QuestionId = eachQuestion.id
                 return (
         <Box sx={{ maxWidth: "97vw" }}>
             <EachQuestion eachQuestion={eachQuestion} index={index}/>

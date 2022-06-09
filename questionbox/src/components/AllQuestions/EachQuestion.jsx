@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import axios from 'axios';
+import EachAnswerForQuestion from './EachAnswerForQuestion'
 
 
 export default function TestCard({eachQuestion, index}) {
@@ -30,6 +31,15 @@ export default function TestCard({eachQuestion, index}) {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     }
+
+    useEffect(() => {
+        axios
+            .get(`https://questionbox-team-lightning.herokuapp.com/api/questions/`)
+            .then((res) => {
+                console.log(res.data)
+                setAllQuestions(res.data)
+            })
+    }, [])
 
     return (
         <Box sx={{ maxWidth: "97vw" }}>
@@ -57,14 +67,15 @@ export default function TestCard({eachQuestion, index}) {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography>{Answers} answers to this question</Typography>
+                    <EachAnswerForQuestion index={index}/>
+                        {/* <Typography>{Answers} answers to this question</Typography>
                         <Card>
                             <CardContent>
                                 <Typography>
                                     we need to map through all the answers to a specific question as they are in their own array. The answer goes in here. Each answer is automatically populated in its own card element.
                                 </Typography>
                             </CardContent>
-                        </Card>
+                        </Card> */}
                     </CardContent>
                 </Collapse>
             </Card>
