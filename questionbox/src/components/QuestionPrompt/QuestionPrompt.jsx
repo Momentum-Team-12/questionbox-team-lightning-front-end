@@ -23,21 +23,20 @@ export const QuestionPrompt = () => {
 		e.preventDefault()
 		console.log(e)
 		axios
-			.post('https://questionbox-team-lightning.herokuapp.com/api/questions/', {
-				title: values.title,
-				body: values.body,
-	},
-	{
-		headers: { Authorization: `token ${token}`,
-		'Content-Type': 'application/json',
-		accept: 'application/json',
-	},
+		.post(
+		'https://questionbox-team-lightning.herokuapp.com/auth/token/logout',
+		{
+			"title": values.title,
+			"body": values.body,
+		},
+		{
+			headers: { Authorization: `token ${token}` },
+		}
+		)
+		.then((res) => {
+		console.log(res.data)
+		})
 	}
-)
-.then((res) => {
-	console.log(res.data)
-})
-};
 
     return (
 	<form onSubmit={handleSubmit}>
@@ -64,9 +63,3 @@ export const QuestionPrompt = () => {
 	</form>
     )
 }
-
-//add post request for question storage
-//example in amy's code - login component
-//modify form to show question title and body
-//put input field inside form 
-//onSubmit handler
