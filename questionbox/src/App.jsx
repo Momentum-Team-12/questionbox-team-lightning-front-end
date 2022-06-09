@@ -6,10 +6,10 @@ import './App.css'
 import axios from 'axios'
 import Error404 from './components/Error404/Error404'
 import NavigationBar from './components/NavigationBar/NavigationBar'
-// import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn';
 import SignIn from './components/NavigationBar/SignIn/SignIn'
 import SignUp from './components/NavigationBar/SignUp/SignUp'
-import AnswersList from './components/AllQuestions/AllQuestions'
+import AllQuestions from './components/AllQuestions/AllQuestions'
+import TestCard from './components/AllQuestions/TestCard'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt'
 import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
 
@@ -51,7 +51,8 @@ const App = () => {
           element={
             <>
               <AddQuestionButton isLoggedIn={isLoggedIn} />
-              <AnswersList />
+              <TestCard />
+              <AllQuestions />
             </>
           }
         />
