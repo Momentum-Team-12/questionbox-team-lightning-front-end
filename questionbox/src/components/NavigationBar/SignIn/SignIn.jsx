@@ -76,10 +76,10 @@ export default function SignIn({ setAuth, isLoggedIn }) {
 
       <Grid item xs={3}>
         <Box>
-          <Typography variant="h4">
+          <Typography variant="h4" align="center">
             Welcome
           </Typography>
-          <Typography>
+          <Typography align="center">
             Please sign in to continue.
           </Typography>
           {error && (
@@ -87,7 +87,7 @@ export default function SignIn({ setAuth, isLoggedIn }) {
               open={open}
               onClose={handleClose}
               autoHideDuration={6000}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             >
               <Alert
                 onClose={handleClose}
@@ -99,23 +99,23 @@ export default function SignIn({ setAuth, isLoggedIn }) {
             </Snackbar>
           )}
           <Box component="form" onSubmit={handleLogin}>
-            <div>
+            <Box>
               <TextField
                 label="username"
                 value={username}
                 margin="normal"
                 onChange={(e) => setUsername(e.target.value)} />
-            </div>
-            <div>
+            </Box>
+            <Box>
               <TextField
                 label="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <div>
+            </Box>
+            <Box textAlign="center">
               <Button size="large" type="submit">Sign in</Button>
-            </div>
+            </Box>
           </Box>
         </Box>
       </Grid>

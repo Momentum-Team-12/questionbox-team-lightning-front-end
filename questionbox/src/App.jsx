@@ -68,6 +68,7 @@ const App = () => {
         ></Route>
         <Route path="/join" element={<SignUp />}></Route>
         <Route path="/questions/add" element={<QuestionPrompt />}></Route>
+        <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </BrowserRouter>
   )
