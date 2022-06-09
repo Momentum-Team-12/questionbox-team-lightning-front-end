@@ -9,7 +9,6 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 // import ExistingUserSignIn from './components/NavigationBar/login/ExistingUserSignIn/ExistingUserSignIn';
 import SignIn from './components/NavigationBar/SignIn/SignIn'
 import SignUp from './components/NavigationBar/SignUp/SignUp'
-import { QuestionDisplay } from './components/QuestionDisplay/QuestionDisplay'
 import AnswersList from './components/AllQuestions/AllQuestions'
 import { QuestionPrompt } from './components/QuestionPrompt/QuestionPrompt'
 import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
