@@ -1,4 +1,6 @@
 import * as React from 'react'
+import useLocalStorageState from 'use-local-storage-state'
+import { Link } from "react-router-dom";
 import { Snackbar } from '@mui/material'
 import MuiAlert from '@mui/material/Alert'
 import { useState } from 'react'
@@ -14,106 +16,103 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
-export default function SignIn({ setAuth, isLoggedIn }) {
+export default function SignIn({ token }) {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [error, setError] = useState('')
     const [open, setOpen] = React.useState(false)
 
     const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-        return
-    }
-    setError('')
-    setOpen(false)
+        if (reason === 'clickaway') {
+            return
+        }
+        setError('')
+        setOpen(false)
     }
 
     const handleQuestionSubmit = (event) => {
-    // prevent the default action of the form, which is to make a request
-    event.preventDefault()
-    console.log(event)
-    // clear errors since we could be re-submitting form data
-    setError('')
-    // Make an ajax request to the backend's URL for login
-    // Use the username and password from state to send in the request body
-    axios
-        .post(
-        'https://questionbox-team-lightning.herokuapp.com/api/questions/',
-        {
-            title: title,
-            body: body,
-        }
-        )
-        .then((res) => {
-        console.log(res.data)
-        })
-        .catch((e) => {
-        e.message === 'Request failed with status code 400'
-            ? setError(
-            'Your username or password is incorrect. Please try again.'
+        event.preventDefault()
+        console.log(event)
+        setError('')
+        axios
+            .post(
+                'https://questionbox-team-lightning.herokuapp.com/api/questions/',
+                {
+                    "title": title,
+                    "body": body
+                },
+                {
+                    headers: { Authorization: `token ${token}` },
+                }
             )
-            : setError(
-            'An error occurred. Please check your username and password and try again.'
-            )
-        setOpen(true)
-        })
-    }
-
-    if (isLoggedIn) {
-    return <Navigate to="/" replace={true} />
+            .then((res) => {
+                console.log(res.status)
+            })
+            .catch((e) => {
+                e.message === 'Request failed with status code 401'
+                    ? setError(
+                        'This request is invalid.'
+                    )
+                    : setError(
+                        'An unknown error occured. Please try again.'
+                    )
+                setOpen(true)
+            })
     }
 
     return (
-    <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: '75vh' }}
-    >
+        <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            style={{ minHeight: '75vh' }}
+        >
 
-        <Grid item xs={3}>
-        <Box>
-            <Typography variant="h4" align="center">
-            Add a question
-            </Typography>
-            {error && (
-            <Snackbar
-                open={open}
-                onClose={handleClose}
-                autoHideDuration={6000}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-            >
-                <Alert
-                onClose={handleClose}
-                severity="warning"
-                sx={{ width: '100%' }}
-                >
-                {error}
-                </Alert>
-            </Snackbar>
-            )}
-            <Box component="form" onSubmit={handleQuestionSubmit}>
-            <Box>
-                <TextField
-                label="title"
-                value={title}
-                margin="normal"
-                onChange={(e) => setTitle(e.target.value)} />
-            </Box>
-            <Box>
-                <TextField
-                label="body"
-                value={body}
-                onChange={(e) => setBody(e.target.value)} />
-            </Box>
-            <Box textAlign="center">
-                <Button size="large" type="submit">Add question</Button>
-            </Box>
-            </Box>
-        </Box>
+            <Grid item xs={3}>
+                <Box>
+                    <Typography variant="h4" align="center">
+                        Add a question
+                    </Typography>
+                    {error && (
+                        <Snackbar
+                            open={open}
+                            onClose={handleClose}
+                            autoHideDuration={6000}
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                        >
+                            <Alert
+                                onClose={handleClose}
+                                severity="warning"
+                                sx={{ width: '100%' }}
+                            >
+                                {error}
+                            </Alert>
+                        </Snackbar>
+                    )}
+                    <Box component="form" onSubmit={handleQuestionSubmit}>
+                        <Box>
+                            <TextField
+                                label="title"
+                                value={title}
+                                margin="normal"
+                                onChange={(e) => setTitle(e.target.value)} />
+                        </Box>
+                        <Box>
+                            <TextField
+                                label="body"
+                                id="outlined-multiline-static"
+                                rows={4}
+                                value={body}
+                                onChange={(e) => setBody(e.target.value)} />
+                        </Box>
+                        <Box textAlign="center">
+                            <Button size="large" type="submit" component={Link} to="/">Add question</Button>
+                        </Box>
+                    </Box>
+                </Box>
+            </Grid>
         </Grid>
-    </Grid>
     )
 }

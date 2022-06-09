@@ -29,13 +29,9 @@ export default function SignIn({ setAuth, isLoggedIn }) {
   }
 
   const handleLogin = (event) => {
-    // prevent the default action of the form, which is to make a request
     event.preventDefault()
     console.log(event)
-    // clear errors since we could be re-submitting form data
     setError('')
-    // Make an ajax request to the backend's URL for login
-    // Use the username and password from state to send in the request body
     axios
       .post(
         'https://questionbox-team-lightning.herokuapp.com/auth/token/login',
