@@ -14,7 +14,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
-export default function SignUp({ setAuth, isLoggedIn }) {
+export default function SignIn({ setAuth, isLoggedIn }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -67,7 +67,7 @@ export default function SignUp({ setAuth, isLoggedIn }) {
     return (
         <Grid
             container
-            spacing={0}
+            spacing={10}
             direction="column"
             alignItems="center"
             justifyContent="center"
@@ -76,18 +76,18 @@ export default function SignUp({ setAuth, isLoggedIn }) {
 
             <Grid item xs={3}>
                 <Box>
-                    <Typography variant="h4">
+                    <Typography variant="h4" align="center">
                         Welcome
                     </Typography>
-                    <Typography>
-                        This the sign UP form. It's just the sign in form, copied for now.
+                    <Typography align="center">
+                        New to Questionbox? Create an account here.
                     </Typography>
                     {error && (
                         <Snackbar
                             open={open}
                             onClose={handleClose}
                             autoHideDuration={6000}
-                            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                         >
                             <Alert
                                 onClose={handleClose}
@@ -99,23 +99,23 @@ export default function SignUp({ setAuth, isLoggedIn }) {
                         </Snackbar>
                     )}
                     <Box component="form" onSubmit={handleLogin}>
-                        <div>
+                        <Box>
                             <TextField
                                 label="username"
                                 value={username}
                                 margin="normal"
                                 onChange={(e) => setUsername(e.target.value)} />
-                        </div>
-                        <div>
+                        </Box>
+                        <Box>
                             <TextField
                                 label="password"
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} />
-                        </div>
-                        <div>
+                        </Box>
+                        <Box textAlign="center">
                             <Button size="large" type="submit">Sign in</Button>
-                        </div>
+                        </Box>
                     </Box>
                 </Box>
             </Grid>
