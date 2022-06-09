@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactDOM from "react-dom/client";
 import { Link } from "react-router-dom";
+import { Navigate } from 'react-router-dom'
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,7 +14,6 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
@@ -57,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function NavigationBar() {
+export default function NavigationBar({ handleLogout, isLoggedIn }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -76,6 +76,12 @@ export default function NavigationBar() {
         setAnchorEl(null);
         handleMobileMenuClose();
     };
+
+    const handleMenuCloseAndLogOut = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+        handleLogout();
+    }
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
@@ -98,10 +104,19 @@ export default function NavigationBar() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <Typography variant="h5">Sign in to continue.</Typography>
-            <Typography variant="subtitle2">An account lets you ask your own questions, give answers, and more.</Typography>
-            <Button component={Link} to="/signup" variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
-            <Button component={Link} to="/login" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
+            {!isLoggedIn ? (
+                <div>
+                    <Typography variant="h5">Sign in to continue.</Typography>
+                    <Typography variant="subtitle2">An account lets you ask your own questions, give answers, and more.</Typography>
+                    <Button onClick={handleMenuClose} component={Link} to="/join" variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
+                    <Button onClick={handleMenuClose} component={Link} to="/login" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
+                </div>
+            ) : (
+                <div>
+                    <Typography variant="p">Signed in as @username.</Typography>
+                    <Button onClick={handleMenuCloseAndLogOut} Navigate to="/" replace={true} variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
+                </div>
+            )}
         </Menu>
     );
 
@@ -170,17 +185,7 @@ export default function NavigationBar() {
                     >
                         <AccountCircle />
                     </IconButton>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
+                    <Box>
                     </Box>
                 </Toolbar>
             </AppBar>
