@@ -13,7 +13,8 @@ import Typography from '@mui/material/Typography';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import axios from 'axios';
-import EachAnswerForQuestion from './EachAnswerForQuestion'
+import EachAnswerForQuestion from './EachAnswerForQuestion';
+import AddAnswer from '../AnswersList/AddAnswer';
 
 
 export default function EachQuestion({ eachQuestion, index }) {
@@ -55,6 +56,7 @@ export default function EachQuestion({ eachQuestion, index }) {
                         <InsertCommentIcon color="primary" />
                     </IconButton>
                     <Typography>{Answers}</Typography>
+                    <Typography><AddAnswer /></Typography>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
