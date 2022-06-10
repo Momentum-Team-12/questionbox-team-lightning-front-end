@@ -35,8 +35,6 @@ export default function AddQuestion({ isLoggedIn, token, username }) {
     }
 
     function handleQuestionSubmit({ title, body, username, creator }) {
-        // event.preventDefault()
-        // console.log(event)
         setError('')
         setCreator(username)
         console.log(creator)
@@ -82,9 +80,6 @@ export default function AddQuestion({ isLoggedIn, token, username }) {
                     <Typography variant="h4" align="center">
                         Add a question
                     </Typography>
-                    {/* <Typography>
-                        Posting as @{username}
-                    </Typography> */}
                     {error && (
                         <Snackbar
                             open={open}

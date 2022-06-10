@@ -1,29 +1,20 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
-import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
-import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import axios from 'axios';
-import EachQuestion from './EachQuestion';
-import useLocalStorageState from 'use-local-storage-state'
 
 
 
 export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLoggedIn, username, token }) {
     const [allAnswers, setAllAnswers] = useState([])
-    // console.log(QuestionAsker === username)
     const [selectedAnswerId, setSelectedAnswerId] = useState('')
 
     useEffect(() => {
@@ -32,13 +23,11 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
             .then((res) => {
                 setAllAnswers(res.data)
                 console.log(res.data)
-                // setSelectedAnswerId(res.data.id)
             },
             )
     }, [])
 
     function handleMarkAccepted({ AnswerId }) {
-        // localStorage.getItem(token)
         console.log(AnswerId)
         console.log(token)
         setSelectedAnswerId(AnswerId)
@@ -60,7 +49,6 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
     }
 
     function handleMarkUnaccepted({ AnswerId }) {
-        // localStorage.getItem(token)
         console.log(AnswerId)
         console.log(token)
         setSelectedAnswerId(AnswerId)

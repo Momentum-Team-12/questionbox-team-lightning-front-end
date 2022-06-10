@@ -15,7 +15,6 @@ import AddQuestion from './components/AddQuestion/AddQuestion'
 import AddQuestionButton from './components/AddQuestion/AddQuestionButton'
 
 const App = () => {
-  //using local storage to hold onto token issued by API upon successful login
   const [token, setToken] = useLocalStorageState('reactQuestionboxToken', '')
   const [username, setUsername] = useLocalStorageState(
     'reactQuestionboxUsername',

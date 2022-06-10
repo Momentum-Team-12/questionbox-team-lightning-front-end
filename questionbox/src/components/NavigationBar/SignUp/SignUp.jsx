@@ -10,7 +10,6 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { SentimentSatisfiedOutlined } from '@mui/icons-material';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
@@ -32,13 +31,9 @@ export default function SignIn({ setAuth, isLoggedIn }) {
     }
 
     const handleLogin = (event) => {
-        // prevent the default action of the form, which is to make a request
         event.preventDefault()
         console.log(event)
-        // clear errors since we could be re-submitting form data
         setError('')
-        // Make an ajax request to the backend's URL for login
-        // Use the username and password from state to send in the request body
         axios
             .post(
                 'https://questionbox-team-lightning.herokuapp.com/auth/users/',
