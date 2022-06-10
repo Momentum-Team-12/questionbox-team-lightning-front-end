@@ -1,10 +1,9 @@
 import React from 'react'
 import useLocalStorageState from 'use-local-storage-state'
-import ReactDOM from 'react-dom/client'
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import axios from 'axios'
 import Error404 from './components/Error404/Error404'
@@ -12,10 +11,8 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 import EachQuestion from './components/QuestionsList/EachQuestion'
 import SignIn from './components/NavigationBar/SignIn/SignIn'
 import SignUp from './components/NavigationBar/SignUp/SignUp'
-// import QuestionsList from './components/QuestionsList/QuestionsList'
 import AddQuestion from './components/AddQuestion/AddQuestion'
-import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
-import AddAnswer from './components/AnswersList/AddAnswer'
+import AddQuestionButton from './components/AddQuestion/AddQuestionButton'
 
 const App = () => {
   //using local storage to hold onto token issued by API upon successful login
@@ -104,7 +101,6 @@ const App = () => {
             />
           }
         ></Route>
-        <Route path="/addanswer" element={<AddAnswer isLoggedIn={isLoggedIn} username={username} token={token} />}></Route>
         <Route path="/join" element={<SignUp />}></Route>
         <Route path="/questions/add" element={<AddQuestion isLoggedIn={isLoggedIn} username={username} token={token} />}></Route>
         <Route path="*" element={<Error404 />}></Route>

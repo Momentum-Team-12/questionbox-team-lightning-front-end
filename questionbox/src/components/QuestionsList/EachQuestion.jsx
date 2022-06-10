@@ -17,7 +17,7 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import axios from 'axios';
 import EachAnswerForQuestion from './EachAnswerForQuestion';
-import AddAnswer from '../AnswersList/AddAnswer';
+// import AddAnswer from '../AnswersList/DELETE THIS - AddAnswer';
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import Fab from '@mui/material/Fab'
 import CreateIcon from '@mui/icons-material/Create';
@@ -82,37 +82,35 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
     }
 
 
-
-
-
-    function handleFavorite({ QuestionId }) {
-        // event.preventDefault()
-        // console.log(event)
-        axios
-            .post(
-                `https://questionbox-team-lightning.herokuapp.com/questions/${QuestionId}/favorites`,
-                {
-                    "favorite": true,
-                },
-                {
-                    headers: { Authorization: `token ${token}` },
-                }
-            )
-            .then((res) => {
-                console.log(res.status)
-            })
-            .catch((e) => {
-                e.message === 'Request failed with status code 401'
-                    ? setError(
-                        'This request is invalid.'
-                    )
-                    : setError(
-                        'An unknown error occured. Please try again.'
-                    )
-            })
-        console.log('Favorite added!')
-        console.log(error)
-    }
+    // function handleFavorite({ QuestionId, QuestionTitle, QuestionBody }) {
+    //     // event.preventDefault()
+    //     // console.log(event)
+    //     axios
+    //         .post(
+    //             `https://questionbox-team-lightning.herokuapp.com/questions/${QuestionId}/favorites`,
+    //             {
+    //                 "title": QuestionTitle,
+    //                 "body": QuestionBody
+    //             },
+    //             {
+    //                 headers: { Authorization: `token ${token}` },
+    //             }
+    //         )
+    //         .then((res) => {
+    //             console.log(res.status)
+    //         })
+    //         .catch((e) => {
+    //             e.message === 'Request failed with status code 401'
+    //                 ? setError(
+    //                     'This request is invalid.'
+    //                 )
+    //                 : setError(
+    //                     'An unknown error occured. Please try again.'
+    //                 )
+    //         })
+    //     console.log('Favorite added!')
+    //     console.log(error)
+    // }
 
     return (
         <Box sx={{ m: 2 }}>
@@ -141,13 +139,13 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
                     <Box>
                         {isLoggedIn ? (
                             <CardActions>
-                                <Box>
+                                {/* <Box>
                                     {IsFavorited === true ? (
-                                        <Button variant="contained" value={QuestionId} onClick={() => handleFavorite({ QuestionId })} endIcon={<StarBorderOutlinedIcon />}>
+                                        <Button variant="contained" value={QuestionId} onClick={() => handleFavorite({ QuestionId, QuestionTitle, QuestionBody })} endIcon={<StarBorderOutlinedIcon />}>
                                             You favorited this
                                         </Button>
                                     ) : (
-                                        <Button variant="outlined" value={QuestionId} onClick={() => handleFavorite({ QuestionId })} endIcon={<StarBorderOutlinedIcon />}>
+                                        <Button variant="outlined" value={QuestionId} onClick={() => handleFavorite({ QuestionId, QuestionTitle, QuestionBody })} endIcon={<StarBorderOutlinedIcon />}>
                                             Want to favorite?
                                         </Button>
                                     )}
@@ -155,7 +153,7 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
                                 <IconButton aria-label="favorite this question" value={QuestionId} onClick={() => handleFavorite({ QuestionId })}>
                                     <StarBorderOutlinedIcon color="primary" />
                                 </IconButton>
-                                <Typography>{Favorites}</Typography>
+                                <Typography>{Favorites}</Typography> */}
                                 <IconButton expand={expanded} onClick={handleExpandClick} aria-label="answer this question">
                                     <InsertCommentIcon color="primary" />
                                 </IconButton>

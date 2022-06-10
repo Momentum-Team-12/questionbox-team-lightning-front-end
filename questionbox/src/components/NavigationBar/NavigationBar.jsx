@@ -68,7 +68,7 @@ export default function NavigationBar({ handleLogout, isLoggedIn, username }) {
                 </Box>
             ) : (
                 <Box padding={1} margin={1}>
-                    <Typography variant="p">Signed in as {username}</Typography>
+                    <Typography variant="p">Signed in as @{username} </Typography>
                     <Button component={Link} onClick={handleMenuCloseAndLogOut} to="/" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
                 </Box>
             )}

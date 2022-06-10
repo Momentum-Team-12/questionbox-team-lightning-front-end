@@ -1,5 +1,4 @@
 import * as React from 'react'
-import useLocalStorageState from 'use-local-storage-state'
 import { Link } from "react-router-dom";
 import { Snackbar } from '@mui/material'
 import MuiAlert from '@mui/material/Alert'
@@ -16,9 +15,10 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
-export default function AddQuestion({ isLoggedIn, token }) {
+export default function AddQuestion({ isLoggedIn, token, username }) {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
+    const [creator, setCreator] = useState(username)
     const [error, setError] = useState('')
     const [open, setOpen] = React.useState(false)
 
@@ -34,16 +34,19 @@ export default function AddQuestion({ isLoggedIn, token }) {
         setOpen(false)
     }
 
-    const handleQuestionSubmit = (event) => {
-        event.preventDefault()
-        console.log(event)
+    function handleQuestionSubmit({ title, body, username, creator }) {
+        // event.preventDefault()
+        // console.log(event)
         setError('')
+        setCreator(username)
+        console.log(creator)
         axios
             .post(
-                'https://questionbox-team-lightning.herokuapp.com/api/questions/',
+                `https://questionbox-team-lightning.herokuapp.com/api/questions/`,
                 {
                     "title": title,
-                    "body": body
+                    "body": body,
+                    "creator": username
                 },
                 {
                     headers: { Authorization: `token ${token}` },
@@ -60,8 +63,8 @@ export default function AddQuestion({ isLoggedIn, token }) {
                     : setError(
                         'An unknown error occured. Please try again.'
                     )
-                setOpen(true)
             })
+        console.log(error)
     }
 
     return (
@@ -79,6 +82,9 @@ export default function AddQuestion({ isLoggedIn, token }) {
                     <Typography variant="h4" align="center">
                         Add a question
                     </Typography>
+                    {/* <Typography>
+                        Posting as @{username}
+                    </Typography> */}
                     {error && (
                         <Snackbar
                             open={open}
@@ -95,7 +101,14 @@ export default function AddQuestion({ isLoggedIn, token }) {
                             </Alert>
                         </Snackbar>
                     )}
-                    <Box component="form" onSubmit={handleQuestionSubmit}>
+                    <Box component="form" onSubmit={() => handleQuestionSubmit({ title, body, creator })}>
+                        <Box>
+                            <TextField
+                                label="Posting as:"
+                                value={username}
+                                margin="normal"
+                                onChange={(e) => setTitle(e.target.value)} />
+                        </Box>
                         <Box>
                             <TextField
                                 label="title"
@@ -112,7 +125,7 @@ export default function AddQuestion({ isLoggedIn, token }) {
                                 onChange={(e) => setBody(e.target.value)} />
                         </Box>
                         <Box textAlign="center">
-                            <Button size="large" type="submit" component={Link} to="/">Add question</Button>
+                            <Button size="large" type="submit" onClick={() => handleQuestionSubmit({ title, body })} component={Link} to="/">Add question</Button>
                         </Box>
                     </Box>
                 </Box>

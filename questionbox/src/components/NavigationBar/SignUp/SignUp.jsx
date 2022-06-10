@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import { SentimentSatisfiedOutlined } from '@mui/icons-material';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
@@ -18,6 +19,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function SignIn({ setAuth, isLoggedIn }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
     const [error, setError] = useState('')
     const [open, setOpen] = React.useState(false)
 
@@ -39,10 +41,12 @@ export default function SignIn({ setAuth, isLoggedIn }) {
         // Use the username and password from state to send in the request body
         axios
             .post(
-                'https://questionbox-team-lightning.herokuapp.com/auth/token/login',
+                'https://questionbox-team-lightning.herokuapp.com/auth/users/',
                 {
                     username: username,
                     password: password,
+                    re_password: password,
+                    email: email
                 }
             )
             .then((res) => {
@@ -52,10 +56,10 @@ export default function SignIn({ setAuth, isLoggedIn }) {
             .catch((e) => {
                 e.message === 'Request failed with status code 400'
                     ? setError(
-                        'Your username or password is incorrect. Please try again.'
+                        'Please try another username and password. The username may be taken, and/or your password is too short.'
                     )
                     : setError(
-                        'An error occurred. Please check your username and password and try again.'
+                        'Your account has been created. Please log in to continue.'
                     )
                 setOpen(true)
             })
@@ -113,6 +117,12 @@ export default function SignIn({ setAuth, isLoggedIn }) {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} />
+                        </Box>
+                        <Box>
+                            <TextField
+                                label="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)} />
                         </Box>
                         <Box textAlign="center">
                             <Button size="large" component={Link} to="/signin">Sign in</Button>

@@ -2,23 +2,14 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 import CreateIcon from '@mui/icons-material/Create';
 
-export default function AddQuestionButton(props) {
+export default function AddQuestionButton({ token, username, isLoggedIn }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(true);
   };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return
-    }
-    setOpen(false)
-  }
 
   const buttonStyle = {
     margin: 0,
@@ -29,7 +20,7 @@ export default function AddQuestionButton(props) {
     position: 'fixed',
   };
 
-  if (!props.isLoggedIn) {
+  if (!isLoggedIn) {
     return (
       <Box>
         <Fab variant="extended"

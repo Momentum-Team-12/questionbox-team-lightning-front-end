@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react'
 import { Typography, Card, CardActions, CardContent, IconButton, Divider } from '@mui/material'
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
@@ -66,14 +65,3 @@ function AnswersList({ isLoggedIn }) {
 }
 
 export default AnswersList
-
-
-
-const bull = (
-    <Box
-        component="span"
-        sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-    >
-        •
-    </Box>
-);
