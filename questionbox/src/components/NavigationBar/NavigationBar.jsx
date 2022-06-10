@@ -108,17 +108,15 @@ export default function NavigationBar({ handleLogout, isLoggedIn, username }) {
             onClose={handleMenuClose}
         >
             {!isLoggedIn ? (
-                <Card>
-                    <Typography variant="h5">Sign in to continue.</Typography>
-                    <Typography variant="subtitle2">An account lets you ask your own questions, give answers, and more.</Typography>
-                    <Button component={Link} to="/join" variant="outlined" endIcon={<AddCircleOutlineRoundedIcon />}>New Account</Button>
-                    <Button component={Link} to="/login" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign In</Button>
-                </Card>
+                <Box padding={1} margin={1}>
+                    <Button onClick={handleMenuClose} component={Link} to="/join" variant="outlined">New Account</Button>
+                    <Button onClick={handleMenuClose} component={Link} to="/signin" variant="contained" color="secondary">Sign In</Button>
+                </Box>
             ) : (
-                <Card>
-                    <Typography variant="p">Signed in as ${username}</Typography>
+                <Box padding={1} margin={1}>
+                    <Typography variant="p">Signed in as {username}</Typography>
                     <Button component={Link} onClick={handleLogout} to="/" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
-                </Card>
+                </Box>
             )}
         </Menu>
     );

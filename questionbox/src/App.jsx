@@ -9,9 +9,8 @@ import NavigationBar from './components/NavigationBar/NavigationBar'
 import SignIn from './components/NavigationBar/SignIn/SignIn'
 import SignUp from './components/NavigationBar/SignUp/SignUp'
 import QuestionsList from './components/QuestionsList/QuestionsList'
-import TempQuestionPrompt from './components/AddQuestion/AddQuestion'
+import AddQuestion from './components/AddQuestion/AddQuestion'
 import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
-import EachQuestion from './components/QuestionsList/EachQuestion'
 import AddAnswer from './components/AnswersList/AddAnswer'
 
 const App = () => {
@@ -52,12 +51,12 @@ const App = () => {
           element={
             <>
               <AddQuestionButton isLoggedIn={isLoggedIn} />
-              <QuestionsList />
+              <QuestionsList isLoggedIn={isLoggedIn} username={username} token={token} />
             </>
           }
         />
         <Route
-          path="/login"
+          path="/signin"
           element={
             <SignIn
               setAuth={setAuth}
@@ -68,7 +67,7 @@ const App = () => {
         ></Route>
         <Route path="/addanswer" element={<AddAnswer />}></Route>
         <Route path="/join" element={<SignUp />}></Route>
-        <Route path="/questions/add" element={<TempQuestionPrompt token={token} />}></Route>
+        <Route path="/questions/add" element={<AddQuestion isLoggedIn={isLoggedIn} username={username} token={token} />}></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </BrowserRouter>
