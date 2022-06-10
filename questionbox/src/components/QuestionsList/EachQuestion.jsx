@@ -15,6 +15,7 @@ import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import axios from 'axios';
 import EachAnswerForQuestion from './EachAnswerForQuestion';
 import AddAnswer from '../AnswersList/AddAnswer';
+import AddCommentIcon from '@mui/icons-material/AddComment';
 
 
 export default function EachQuestion({ eachQuestion, index }) {
@@ -56,6 +57,9 @@ export default function EachQuestion({ eachQuestion, index }) {
                         <InsertCommentIcon color="primary" />
                     </IconButton>
                     <Typography>{Answers}</Typography>
+                    <IconButton expand={expanded} onClick={handleExpandClick} aria-label="reply to this question">
+                        <AddCommentIcon color="primary" />
+                    </IconButton>
                     <Typography><AddAnswer /></Typography>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
