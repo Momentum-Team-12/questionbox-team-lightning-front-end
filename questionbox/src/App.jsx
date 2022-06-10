@@ -11,7 +11,6 @@ import SignUp from './components/NavigationBar/SignUp/SignUp'
 import QuestionsList from './components/QuestionsList/QuestionsList'
 import TempQuestionPrompt from './components/AddQuestion/AddQuestion'
 import AddQuestionButton from './components/AddQuestionButton/AddQuestionButton'
-import EachQuestion from './components/QuestionsList/EachQuestion'
 import AddAnswer from './components/AnswersList/AddAnswer'
 
 const App = () => {
@@ -52,12 +51,12 @@ const App = () => {
           element={
             <>
               <AddQuestionButton isLoggedIn={isLoggedIn} />
-              <QuestionsList />
+              <QuestionsList isLoggedIn={isLoggedIn} username={username} token={token} />
             </>
           }
         />
         <Route
-          path="/login"
+          path="/signin"
           element={
             <SignIn
               setAuth={setAuth}

@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Snackbar } from '@mui/material'
 import MuiAlert from '@mui/material/Alert'
 import { useState } from 'react'
+import { Link } from "react-router-dom";
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
 import Box from '@mui/material/Box';
@@ -114,7 +115,10 @@ export default function SignIn({ setAuth, isLoggedIn }) {
                                 onChange={(e) => setPassword(e.target.value)} />
                         </Box>
                         <Box textAlign="center">
-                            <Button size="large" type="submit">Sign in</Button>
+                            <Button size="large" component={Link} to="/signin">Sign in</Button>
+                        </Box>
+                        <Box textAlign="center">
+                            <Button size="large" variant="outlined" type="submit">Create account</Button>
                         </Box>
                     </Box>
                 </Box>
