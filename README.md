@@ -1,6 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/62eb377f-ea8c-4bb6-9707-d22d598b6a0d/deploy-status)](https://app.netlify.com/sites/strong-gaufre-fe61be/deploys)
 
-[Click here to visit the production site] (https://main--strong-gaufre-fe61be.netlify.app/)
+[![Click here to visit the production site] (https://main--strong-gaufre-fe61be.netlify.app/)]
 
 # QuestionBox
 
