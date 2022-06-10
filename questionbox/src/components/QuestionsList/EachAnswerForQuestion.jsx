@@ -99,9 +99,15 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
                             @{QuestionAsker}
                         </Button>
                         <CardContent>
-                            <Typography>
-                                Created {CreatedDate} Updated {ModifiedDate}
-                            </Typography>
+                            {CreatedDate.value === ModifiedDate.value ? (
+                                <Typography>
+                                    Answered {CreatedDate}
+                                </Typography>
+                            ) : (
+                                <Typography>
+                                    Answered {CreatedDate} Updated {ModifiedDate}
+                                </Typography>
+                            )}
                             <Typography variant="p">
                                 {Answer}
                             </Typography>
@@ -120,20 +126,6 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
                                             </Button>
                                         )}
                                     </Box>
-                                    <Button endIcon={<ArrowForwardRoundedIcon />}>
-                                        @{EachAnswerer}
-                                    </Button>
-                                    <Button>
-                                        @{QuestionAsker}
-                                    </Button>
-                                    <CardContent>
-                                        <Typography>
-                                            Created {CreatedDate} Updated {ModifiedDate}
-                                        </Typography>
-                                        <Typography variant="p">
-                                            {Answer}
-                                        </Typography>
-                                    </CardContent>
                                 </CardActions>
                             ) : (
                                 <CardActions>
@@ -146,20 +138,6 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
                                             <Box></Box>
                                         )}
                                     </Box>
-                                    <Button endIcon={<ArrowForwardRoundedIcon />}>
-                                        @{EachAnswerer}
-                                    </Button>
-                                    <Button>
-                                        @{QuestionAsker}
-                                    </Button>
-                                    <CardContent>
-                                        <Typography>
-                                            Created {CreatedDate} Updated {ModifiedDate}
-                                        </Typography>
-                                        <Typography variant="p">
-                                            {Answer}
-                                        </Typography>
-                                    </CardContent>
                                 </CardActions>
                             )}
                         </ Box>

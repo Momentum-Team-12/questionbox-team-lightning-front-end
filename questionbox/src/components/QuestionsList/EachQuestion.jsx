@@ -36,28 +36,27 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
     // const handleFavorite = (event) => {
     //     event.preventDefault()
     //     console.log(event)
-    //     setError('')
     //     axios
     //         .post(
-    //             `https://questionbox-team-lightning.herokuapp.com/api/questions/${QuestionId}`/answers/<int:pk>/accept,
-    //             {
-    //                 "accepted": true,
+    //             `https://questionbox-team-lightning.herokuapp.com/api/questions/${QuestionId}` / answers / <int:pk>/accept,
+    //                 {
+    //                     "accepted": true,
     //             },
-    //             {
-    //                 headers: { Authorization: `token ${token}` },
+    //                 {
+    //                     headers: {Authorization: `token ${token}` },
     //             }
-    //         )
+    //                 )
     //         .then((res) => {
-    //             console.log(res.status)
-    //         })
+    //                     console.log(res.status)
+    //                 })
     //         .catch((e) => {
-    //             e.message === 'Request failed with status code 401'
-    //                 ? setError(
-    //                     'This request is invalid.'
-    //                 )
-    //                 : setError(
-    //                     'An unknown error occured. Please try again.'
-    //                 )
+    //                     e.message === 'Request failed with status code 401'
+    //                         ? setError(
+    //                             'This request is invalid.'
+    //                         )
+    //                         : setError(
+    //                             'An unknown error occured. Please try again.'
+    //                         )
     //             setOpen(true)
     //         })
     // }
@@ -69,22 +68,27 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
                     @{QuestionAsker}
                 </Button>
                 <CardContent>
-                    <Typography>
-                        Created {CreatedDate} Updated {ModifiedDate}
-                    </Typography>
-                    <Typography variant="h5" expand={expanded} onClick={handleExpandClick} sx={{ cursor: "pointer", userSelect: "none" }}>
+                    {CreatedDate.value === ModifiedDate.value ? (
+                        <Typography>
+                            Asked {CreatedDate}
+                        </Typography>
+                    ) : (
+                        <Typography>
+                            Updated {CreatedDate} Updated {ModifiedDate}
+                        </Typography>
+                    )}
+                    < Typography variant="h5" expand={expanded} onClick={handleExpandClick} sx={{ cursor: "pointer", userSelect: "none" }}>
                         {QuestionTitle}
                     </Typography>
                     <Typography variant="p">
                         {QuestionBody}
                     </Typography>
                 </CardContent>
-
                 <CardActions>
                     <Box>
-                        {!isLoggedIn ? (
+                        {isLoggedIn ? (
                             <CardActions>
-                                <IconButton aria-label="favorite this question" component={Link} to="/signin">
+                                <IconButton aria-label="favorite this question">
                                     <StarBorderOutlinedIcon color="primary" />
                                 </IconButton>
                                 <Typography>{Favorites}</Typography>
@@ -95,7 +99,7 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
                             </CardActions>
                         ) : (
                             <CardActions>
-                                <IconButton aria-label="favorite this question">
+                                <IconButton aria-label="favorite this question" component={Link} to="/signin">
                                     <StarBorderOutlinedIcon color="primary" />
                                 </IconButton>
                                 <Typography>{Favorites}</Typography>
@@ -114,7 +118,7 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
                     </CardContent>
                 </Collapse>
             </Card>
-        </Box>
+        </Box >
     )
 }
 
