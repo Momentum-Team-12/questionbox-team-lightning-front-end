@@ -17,6 +17,7 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import axios from 'axios';
 import EachQuestion from './EachQuestion';
+import useLocalStorageState from 'use-local-storage-state'
 
 
 
@@ -24,7 +25,6 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
     const [allAnswers, setAllAnswers] = useState([])
     // console.log(QuestionAsker === username)
     const [selectedAnswerId, setSelectedAnswerId] = useState('')
-
 
     useEffect(() => {
         axios
@@ -38,13 +38,37 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
     }, [])
 
     function handleMarkAccepted({ AnswerId }) {
+        // localStorage.getItem(token)
         console.log(AnswerId)
+        console.log(token)
         setSelectedAnswerId(AnswerId)
         axios
-            .post(
+            .patch(
                 `https://questionbox-team-lightning.herokuapp.com/api/questions/${QuestionId}/answers/${AnswerId}/accept`,
                 {
                     "accepted": true,
+                },
+                {
+                    headers: { Authorization: `token ${token}` },
+                }
+            )
+            .then((res) => {
+                console.log(res.status)
+            })
+            .catch((e) => {
+            })
+    }
+
+    function handleMarkUnaccepted({ AnswerId }) {
+        // localStorage.getItem(token)
+        console.log(AnswerId)
+        console.log(token)
+        setSelectedAnswerId(AnswerId)
+        axios
+            .patch(
+                `https://questionbox-team-lightning.herokuapp.com/api/questions/${QuestionId}/answers/${AnswerId}/accept`,
+                {
+                    "accepted": false,
                 },
                 {
                     headers: { Authorization: `token ${token}` },
@@ -86,13 +110,13 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
                             {isLoggedIn && QuestionAsker === username ? (
                                 <CardActions>
                                     <Box>
-                                        {AcceptedAnswer.value === true ? (
-                                            <Button endIcon={<AutoAwesomeIcon />}>
-                                                ACCEPTED! click to unaccept
+                                        {AcceptedAnswer === true ? (
+                                            <Button variant="contained" value={AnswerId} onClick={() => handleMarkUnaccepted({ AnswerId })} endIcon={<AutoAwesomeIcon />}>
+                                                Accepted Answer
                                             </Button>
                                         ) : (
-                                            <Button value={AnswerId} onClick={() => handleMarkAccepted({ AnswerId })} endIcon={<AutoAwesomeOutlinedIcon />}>
-                                                NOT ACCEPTED. click me to accept
+                                            <Button variant="outlined" value={AnswerId} onClick={() => handleMarkAccepted({ AnswerId })} endIcon={<AutoAwesomeOutlinedIcon />}>
+                                                Accept
                                             </Button>
                                         )}
                                     </Box>
@@ -114,10 +138,12 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
                             ) : (
                                 <CardActions>
                                     <Box>
-                                        {AcceptedAnswer.value === true ? (
-                                            <Typography>Accepted Answer</Typography>
+                                        {AcceptedAnswer === true ? (
+                                            <Button disabled variant="contained" value={AnswerId} endIcon={<AutoAwesomeIcon />}>
+                                                Accepted by {QuestionAsker}
+                                            </Button>
                                         ) : (
-                                            <Typography>NOT Accepted</Typography>
+                                            <Box></Box>
                                         )}
                                     </Box>
                                     <Button endIcon={<ArrowForwardRoundedIcon />}>

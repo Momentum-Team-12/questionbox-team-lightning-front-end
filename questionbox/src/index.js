@@ -11,6 +11,9 @@ import '@fontsource/montserrat/700.css';
 
 const theme = createTheme({
   palette: {
+    action: {
+      disabled: '#ffffff'
+    },
     primary: {
       main: '#ffffff',
       contrastText: 'rgba(6,6,6,0.87)',
