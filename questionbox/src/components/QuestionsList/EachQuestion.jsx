@@ -14,7 +14,9 @@ import Typography from '@mui/material/Typography';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import axios from 'axios';
-import EachAnswerForQuestion from './EachAnswerForQuestion'
+import EachAnswerForQuestion from './EachAnswerForQuestion';
+import AddAnswer from '../AnswersList/AddAnswer';
+import AddCommentIcon from '@mui/icons-material/AddComment';
 
 
 export default function EachQuestion({ eachQuestion, index, isLoggedIn, username, token }) {

@@ -1,11 +1,10 @@
-import * as React from 'react'
-import useLocalStorageState from 'use-local-storage-state'
+import * as React from 'react';
 import { Link } from "react-router-dom";
-import { Snackbar } from '@mui/material'
-import MuiAlert from '@mui/material/Alert'
-import { useState } from 'react'
-import axios from 'axios'
-import { Navigate } from 'react-router-dom'
+import { Snackbar } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
+import { useState } from 'react';
+import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -17,7 +16,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 })
 
 export default function AddAnswer({ token }) {
-    const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [error, setError] = useState('')
     const [open, setOpen] = React.useState(false)
@@ -30,7 +28,7 @@ export default function AddAnswer({ token }) {
         setOpen(false)
     }
 
-    const handleQuestionSubmit = (event) => {
+    const handleAnswerSubmit = (event) => {
         event.preventDefault()
         console.log(event)
         setError('')
@@ -38,8 +36,7 @@ export default function AddAnswer({ token }) {
             .post(
                 'https://questionbox-team-lightning.herokuapp.com/api/questions/',
                 {
-                    "title": title,
-                    "body": body
+                    "answer": body,
                 },
                 {
                     headers: { Authorization: `token ${token}` },
@@ -61,58 +58,34 @@ export default function AddAnswer({ token }) {
     }
 
     return (
-        <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            style={{ minHeight: '75vh' }}
-        >
+        // <Grid
+        //     spacing={0}
+        //     direction="column"
+        //     alignItems="center"
+        //     justifyContent="center"
+        //     style={{ minHeight: '75vh' }}
+        // >
 
             <Grid item xs={3}>
                 <Box>
                     <Typography variant="h4" align="center">
                         Add an answer
                     </Typography>
-                    {error && (
-                        <Snackbar
-                            open={open}
-                            onClose={handleClose}
-                            autoHideDuration={6000}
-                            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                        >
-                            <Alert
-                                onClose={handleClose}
-                                severity="warning"
-                                sx={{ width: '100%' }}
-                            >
-                                {error}
-                            </Alert>
-                        </Snackbar>
-                    )}
-                    <Box component="form" onSubmit={handleQuestionSubmit}>
+                    <Box component="form" onSubmit={handleAnswerSubmit}>
                         <Box>
                             <TextField
-                                label="title"
-                                value={title}
-                                margin="normal"
-                                onChange={(e) => setTitle(e.target.value)} />
-                        </Box>
-                        <Box>
-                            <TextField
-                                label="body"
+                                label="answer"
                                 id="outlined-multiline-static"
                                 rows={4}
                                 value={body}
                                 onChange={(e) => setBody(e.target.value)} />
                         </Box>
                         <Box textAlign="center">
-                            <Button size="large" type="submit" component={Link} to="/">Add question</Button>
+                            <Button size="large" type="submit" component={Link} to="/">Submit Answer</Button>
                         </Box>
                     </Box>
                 </Box>
             </Grid>
-        </Grid>
+        // </Grid>
     )
 }
