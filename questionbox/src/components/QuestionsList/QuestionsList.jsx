@@ -17,7 +17,7 @@ import axios from 'axios';
 import EachQuestion from './EachQuestion'
 
 
-export default function QuestionsList() {
+export default function QuestionsList({ isLoggedIn, username, token }) {
     const [allQuestions, setAllQuestions] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -44,7 +44,7 @@ export default function QuestionsList() {
             {allQuestions.map((eachQuestion, index) => {
                 return (
                     <Box sx={{ maxWidth: "97vw" }} key={index}>
-                        <EachQuestion eachQuestion={eachQuestion} index={index} />
+                        <EachQuestion eachQuestion={eachQuestion} index={index} isLoggedIn={isLoggedIn} username={username} token={token} />
                     </Box>
                 )
             })}

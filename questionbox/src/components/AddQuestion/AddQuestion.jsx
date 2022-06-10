@@ -16,11 +16,15 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 })
 
-export default function AddQuestion({ token }) {
+export default function AddQuestion({ isLoggedIn, token }) {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [error, setError] = useState('')
     const [open, setOpen] = React.useState(false)
+
+    if (!isLoggedIn) {
+        return <Navigate to="/signin" replace={true} />
+    }
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {

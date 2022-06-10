@@ -36,7 +36,7 @@ export default function AddQuestionButton(props) {
           style={buttonStyle}
           onClick={handleClick}
           component={Link}
-          to="/login"
+          to="/signin"
           color="secondary"
           aria-label="add">
           <CreateIcon />
