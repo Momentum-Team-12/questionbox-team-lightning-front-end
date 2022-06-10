@@ -91,7 +91,7 @@ export default function EachAnswerForQuestion({ QuestionId, QuestionAsker, isLog
                 const ModifiedDate = eachAnswer.modified_on
                 const AcceptedAnswer = eachAnswer.accepted
                 return (
-                    <Card key={AnswerId}>
+                    <Card sx={{ m: 2, border: 1 }} key={AnswerId}>
                         <Button endIcon={<ArrowForwardRoundedIcon />}>
                             @{EachAnswerer}
                         </Button>

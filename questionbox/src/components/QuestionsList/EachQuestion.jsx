@@ -10,17 +10,23 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import axios from 'axios';
 import EachAnswerForQuestion from './EachAnswerForQuestion';
 import AddAnswer from '../AnswersList/AddAnswer';
 import AddCommentIcon from '@mui/icons-material/AddComment';
+import Fab from '@mui/material/Fab'
+import CreateIcon from '@mui/icons-material/Create';
 
 
 export default function EachQuestion({ eachQuestion, index, isLoggedIn, username, token }) {
     const [expanded, setExpanded] = React.useState(false);
+    const [response, setResponse] = useState('')
+    const [error, setError] = useState('')
     const [allQuestions, setAllQuestions] = useState([])
     const QuestionAsker = eachQuestion.creator
     const QuestionTitle = eachQuestion.title
@@ -30,41 +36,86 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
     const CreatedDate = eachQuestion.created_at
     const ModifiedDate = eachQuestion.modified_on
     const QuestionId = eachQuestion.id
+    const IsFavorited = eachQuestion.favorite
+
+    const buttonStyle = {
+        margin: 5,
+        top: 'auto',
+        right: 20,
+        bottom: 20,
+        left: 100,
+        position: 'inherit',
+    };
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     }
 
-    // const handleFavorite = (event) => {
-    //     event.preventDefault()
-    //     console.log(event)
-    //     axios
-    //         .post(
-    //             `https://questionbox-team-lightning.herokuapp.com/api/questions/${QuestionId}` / answers / <int:pk>/accept,
-    //                 {
-    //                     "accepted": true,
-    //             },
-    //                 {
-    //                     headers: {Authorization: `token ${token}` },
-    //             }
-    //                 )
-    //         .then((res) => {
-    //                     console.log(res.status)
-    //                 })
-    //         .catch((e) => {
-    //                     e.message === 'Request failed with status code 401'
-    //                         ? setError(
-    //                             'This request is invalid.'
-    //                         )
-    //                         : setError(
-    //                             'An unknown error occured. Please try again.'
-    //                         )
-    //             setOpen(true)
-    //         })
-    // }
+    function handleAnswerSubmit({ QuestionId }) {
+        // event.preventDefault()
+        // console.log(event)
+        setError('')
+        axios
+            .post(
+                `https://questionbox-team-lightning.herokuapp.com/api/questions/${QuestionId}/answers`,
+                {
+                    "response": response,
+                },
+                {
+                    headers: { Authorization: `token ${token}` },
+                }
+            )
+            .then((res) => {
+                console.log(res.status)
+            })
+            .catch((e) => {
+                e.message === 'Request failed with status code 401'
+                    ? setError(
+                        'This request is invalid.'
+                    )
+                    : setError(
+                        'An unknown error occured. Please try again.'
+                    )
+            })
+        console.log('Answer posted!')
+        console.log(error)
+    }
+
+
+
+
+
+    function handleFavorite({ QuestionId }) {
+        // event.preventDefault()
+        // console.log(event)
+        axios
+            .post(
+                `https://questionbox-team-lightning.herokuapp.com/questions/${QuestionId}/favorites`,
+                {
+                    "favorite": true,
+                },
+                {
+                    headers: { Authorization: `token ${token}` },
+                }
+            )
+            .then((res) => {
+                console.log(res.status)
+            })
+            .catch((e) => {
+                e.message === 'Request failed with status code 401'
+                    ? setError(
+                        'This request is invalid.'
+                    )
+                    : setError(
+                        'An unknown error occured. Please try again.'
+                    )
+            })
+        console.log('Favorite added!')
+        console.log(error)
+    }
 
     return (
-        <Box sx={{ maxWidth: "97vw" }}>
+        <Box sx={{ m: 2 }}>
             <Card key={index}>
                 <Button>
                     @{QuestionAsker}
@@ -90,7 +141,18 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
                     <Box>
                         {isLoggedIn ? (
                             <CardActions>
-                                <IconButton aria-label="favorite this question">
+                                <Box>
+                                    {IsFavorited === true ? (
+                                        <Button variant="contained" value={QuestionId} onClick={() => handleFavorite({ QuestionId })} endIcon={<StarBorderOutlinedIcon />}>
+                                            You favorited this
+                                        </Button>
+                                    ) : (
+                                        <Button variant="outlined" value={QuestionId} onClick={() => handleFavorite({ QuestionId })} endIcon={<StarBorderOutlinedIcon />}>
+                                            Want to favorite?
+                                        </Button>
+                                    )}
+                                </Box>
+                                <IconButton aria-label="favorite this question" value={QuestionId} onClick={() => handleFavorite({ QuestionId })}>
                                     <StarBorderOutlinedIcon color="primary" />
                                 </IconButton>
                                 <Typography>{Favorites}</Typography>
@@ -117,38 +179,31 @@ export default function EachQuestion({ eachQuestion, index, isLoggedIn, username
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <EachAnswerForQuestion QuestionId={QuestionId} QuestionAsker={QuestionAsker} isLoggedIn={isLoggedIn} username={username} token={token} />
+                        <Box>
+                            <Box component="form" onSubmit={() => handleAnswerSubmit({ QuestionId })}>
+                                <Box>
+                                    <TextField
+                                        label="answer"
+                                        id="outlined-multiline-static"
+                                        rows={4}
+                                        value={response}
+                                        onChange={(e) => setResponse(e.target.value)} />
+                                </Box>
+                            </Box>
+                            <Fab variant="extended"
+                                style={buttonStyle}
+                                value={QuestionId}
+                                color="primary"
+                                aria-label="add"
+                                onClick={() => handleAnswerSubmit({ QuestionId })}
+                            >
+                                <CreateIcon />
+                                Add Answer
+                            </Fab>
+                        </Box>
                     </CardContent>
                 </Collapse>
             </Card>
         </Box >
     )
 }
-
-// return (
-//     <Box>
-//         {!isLoggedIn ? (
-//             <CardActions>
-//                 <IconButton aria-label="favorite this question">
-//                     <StarBorderOutlinedIcon color="primary" />
-//                 </IconButton>
-//                 <Typography>{Favorites}</Typography>
-//                 <Typography>Log in to favorite</Typography>
-//                 <IconButton expand={expanded} onClick={handleExpandClick} aria-label="answer this question">
-//                     <InsertCommentIcon color="primary" />
-//                 </IconButton>
-//                 <Typography>{Answers}</Typography>
-//             </CardActions>
-//         ) : (
-//             <CardActions>
-//                 <IconButton aria-label="favorite this question">
-//                     <StarBorderOutlinedIcon color="primary" />
-//                 </IconButton>
-//                 <Typography>{Favorites}</Typography>
-//                 <IconButton expand={expanded} onClick={handleExpandClick} aria-label="answer this question">
-//                     <InsertCommentIcon color="primary" />
-//                 </IconButton>
-//                 <Typography>{Answers}</Typography>
-//             </CardActions>
-//         )}
-//     </ Box>
-// );

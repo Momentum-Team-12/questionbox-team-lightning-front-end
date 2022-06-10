@@ -40,7 +40,7 @@ export default function AddQuestionButton(props) {
           color="secondary"
           aria-label="add">
           <CreateIcon />
-          Add
+          Add Question
         </Fab>
       </Box>
     )

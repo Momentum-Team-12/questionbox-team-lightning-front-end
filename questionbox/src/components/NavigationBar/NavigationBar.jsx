@@ -84,6 +84,7 @@ export default function NavigationBar({ handleLogout, isLoggedIn, username }) {
         setAnchorEl(null);
         handleMobileMenuClose();
         handleLogout();
+        handleMenuClose();
     }
 
     const handleMobileMenuOpen = (event) => {
@@ -115,7 +116,7 @@ export default function NavigationBar({ handleLogout, isLoggedIn, username }) {
             ) : (
                 <Box padding={1} margin={1}>
                     <Typography variant="p">Signed in as {username}</Typography>
-                    <Button component={Link} onClick={handleLogout} to="/" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
+                    <Button component={Link} onClick={handleMenuCloseAndLogOut} to="/" variant="contained" color="secondary" endIcon={<AccountCircleRoundedIcon />}>Sign Out</Button>
                 </Box>
             )}
         </Menu>
